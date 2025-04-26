@@ -5,6 +5,13 @@ LabVIEW-based remote interface for waveform acquisition, configuration, real-tim
 
 ---
 
+## 📌 Project Info
+- 🎓 Course: Sistemi Elettronici di Misura
+- 🏫 University of Ferrara
+- 📅 Year: 2021/2022
+  
+---
+
 ## 🧠 About the Project
 
 This project focuses on the development of a **remote control software** for the **Tektronix DPO75002SX ATI Performance Oscilloscope** series, using **LabVIEW** and **VISA protocol**.
@@ -138,7 +145,7 @@ Data and results from full measurement sessions are stored inside `/File_Salvata
 Bachelor's Thesis, B.Sc. in Electronic Engineering – University of Bologna (2021)  
 - Andrea Perna
 
-📧 andrea.perna3@studio.unibo.it
+📧 and.perna99@gmail.com
 
 ---
 
