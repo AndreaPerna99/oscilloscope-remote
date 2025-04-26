@@ -1,0 +1,241 @@
+Measurements Values (letti)
+Psorg = -11dBm
+fsorg = 1GHz
+Vch1RMS = 0.00387212 = 3,87 mV
+Vch2RMS = 0.0200556 = 20.1 mV
+Ppm = -20.5 dBm  potenza alla sezione del carico del power meter
+
+Mi interessa la sezione al transistor, perciò dobbiamo togliere le perdite associate al power meter, stimate a -20.9 dBm.
+
+Ppm - Perdite = 0.4 dbM Potenza kletta dal power meter
+
+
+
+CH2 CI FORNISCE LA POTENZA IN USCITA ALLA SEZIONE DEL TRANSISTOR, CALCOLIAMOLA
+
+Calcoliamo la potenza trovata dall'oscilloscopio, abbiamo il valore RMS, usiamo la formula
+
+P = Vrms^2 / 50 [w] > Pdbm? 10log10 (Pw/1mW)
+
+-20.93 dBm è la potenza di uscita che arriva all'oscilloscopio digitale, calvolata tramite i valori RMS trovati dall'oscilloscopio.
+
+Le perdite dall'oscilloscoio al transistor sono state stimate al valore -21.5 dBm
+
+facciamo il calcolo:
+
+-20.93 + 21.5  = 0.57 dBm -> POTENZA IN USCITA, CANALE 2
+
+E' la potenza che si confronta sul power meter, è la potenza di uscita alla sezione centrale del nostro setup di misura
+
+Prima era 0.4 dMb, ora abbiamo 0.57 dBm, è un valore alquanto accettabile e abbiamo misurato la potenza tramite i calcoli effettuati dal nostro oscilloscopio digitale.
+
+
+IL CANALE 1 INVECE FORNISCE LA POTENZA IN INGRESSO AL MOSFET, perchè l'onda inciente in arrivo alla sorgente viene presa dal canale 1. Invece la potenza riflessa la abbiamo misurata e stimata attraverso il canale 1.
+
+Qui non possiamo usare il power meter, ma possiamo stimare tale potenza usando l'oscilloscpio
+
+Facciamo lo stesso calcolo, utilizzando però il valore RMS del canale 1, con la formula della potenza, questa volta in ingresso al FET:
+
+Noi conosciamo le perdite dall'oscilloscpio alla resistenza di ingtesso, possiamo riportare il valore di potenza al RESOURCE. Dal resource attiviamo al DUT, in questo secondo caso sommando
+
+perdite dal ch1 alla sorgente -> -22,1dB
+
+attenuazione/perdite dalla sorgente al DUT (device under test) sono di -1.2 dB
+
+Calcolo la potenza in dBm, tolgo le attenuazioni e trovo il valore di potenza in ingresso. E' importante togliere tutte le attenuazioni per trovare il corretto risultato, esse sopno stimate
+
+All'oscilloscpio arrivano -35.2 dbM, tolgo ora le attenuazioni per trovatre la potenza in ingresso al DUT
+
+-14.3 è la potenza in ingresso al DUT, calcolata mediante il valore efficace ricavato dall'oscilloscopio!
+
+
+
+AVENDO Pin E Pout, POSSO CALCOLARE IL GUADAGNO DEL DUT
+
+Gdut = Poutdb - Pindb = 14.9 db
+
+E' il guadagno del DUT
+
+Calcoliamo l'efficienza, siamo a piccolo segnale in classe A, perciò l'efficienza sarà effettivamente molto bassa
+
+eta = Pout / Pdc = (1mW / 2.4)*100 = 0.05% efficienza, non sta buttando fuori nulla. Andando su con la potenza si potrebbe vedere qualcosa di interessante
+
+Pdc = Vd0*Id0 componenti dc, le vediamo dall'alimentatore
+Vd0 = 6 V
+Id0 = 0.395 A 
+
+Pdc = 6 * 0.395 = 2.4 W
+
+ANDIAMO SU CON L APOTENZA DI INGRESSO, ADESSO E' IN CLASSE A CIOE E LINEARE
+
+Andando su di 5dbm in ingresso dovremmo vedere in uscita akk'incirca 5dbm, in quanto il dispositivo è lineare
+
+Dal power meter abbiamo -15.5 dbM in uscita, circa cinque in più di prima come è giusto che sia 
+
+Facciamo la stessa misura di prima, ma le forme d'onda sono tagliate. Sistemiamo la scala verticale in quanto la forma d'onda esce dallo scherrmo
+
+
+
+
+
+
+
+DOPO AVER SLVATO I DATI, FACCIAMO I CALCOLI COME PRIMA, PRENDIAMO I VALORI EFFICACI DEL CANALE 1  E DEL CANALE2
+
+Vrmsch1 = 0.00711805 = 7.12 mV
+Vrmsch2 = 0.0356918 = 35.7 mV
+
+aggiungiamo la potenza del power meter
+
+-15.dbM uscita del power meter, aggingiamo le perdite
+
+Puscitapower meter = 5,2 dbM
+
+calcoliamo la potenza di uscita al DUT in dB
+
+Pinoscill-29.9 dbM Potenza di ingresso all'oscilloscopio, canale 1
+aggiungiamo le perdite per trovare la potenza in ingresso al DUT
+
+Pin = -9 dbM , cinque db in più di prima
+
+ora ragioniamo sul canale 2, uscita, troviamo l'uscita all'osvillloscpio e poi tohliamo le perditye
+
+Poutoscill= -15.94 dBm
+adesso togliamo le perdite per arrivarea al DUT
+
+Pout = 5.56 dbM
+
+
+
+
+SE VOGLIAMO CALCOLARE l?EFFICIENZA CI SERVONO I vALORI DI V E I   I = 0.394, V = 6V
+
+Prima avevamo 0, avendo aggiunto 5dBm ora ovviamente in uscita abbiamo 5dbm. Questo perchè il dispositivo con il quale lavoriamo lavora in classe A, quindi ha un comportamento molto linare, abbiamo fatto due misure alzando nella seconda la potenza e ottendendo in uscita una potenza maggiore.
+
+
+
+DIAMO 5db in PIU E ANDIAMO A MISURARE SALENDO IN POTENZA, con 5db in pià arriviamo con una potenza il power meter segna -10.6 dbm in uscita, vediamo se i calcoli rispettano questo valore. Aumentando ancora di 5dbm otteniamo -1dbM di potenza in ingresso alla sorgente
+
+Ppowermeter = -10.6 dBm
+
+Prendiamo i dati, poi da sviluppare in seguito:
+
+Vrmsch1 = 0.0127393 V (ingresso)
+Vrmsch2 = 0.0634903 V (uscita)
+
+coorente I = 0.391 A; V = 6v
+
+Dati questi valori, calcolare la potenza in ingresso e in uscita dell'oscilloscpio e togliendo le perdite la potenza espressa in dBm in uscita e all'ingresso del DUT, per poi calcolare il guadagno e l'efficienza!!!
+
+Aumemtiamo di 5db e passiamo a +4dBm per la potenza in ingresso, vediamo di prendere i valori della tensione efficace. Aumentiamo fino a che avremo un comportamento non lineare.
+
+Psorg = +4dbM
+
+Prendiamo i valori Vrms per il canale 1 e per il canale 2:
+Vrms1 = 0.0199936 V
+Vrms2 = 0.112758 V
+Ppowermeter = -5.6 dbM
+I = 0.383 A
+
+
+INVESTIGARE SE TRA I COMANDI A DISPOSIZIONE ESISTE UN COMANDO CHE FORNISCE L'INFORMAZIONE CHE IL CANALE E' STATO TAGLIATO, E QUINDI POSSO SAPERE SE E' NECESSARIO CAMBIARE LA SCALA VERTICALE DI UN CANALE. Cercare un comando CLIPPED!!
+
+
+Aumentiamo ancora di 5dbm e andiamo a 
+Psorg = +9 dbM
+
+Mettiamo a posto le scale e acquisiamo i valori!
+Vrms1 = 0.0430875 V
+Vrms2 = 0.214733 V
+Ppowermeter = -0.1 dbM
+I = 0.366 A 
+
+
+Aumentiamo nuovamente la potenza della sorgente di +3dB rispetto a quella precedente. Andiamo quindi a vedrre i risultati ottenuti
+
+Psorg = +12 dBm
+Vrms1  = 0.0594811 V
+Vrms2 = 0.296048 V
+Ppowermeter = 2,7 dbM
+I = 0.349 A
+
+Aumentiamo di 2 dB, dovrebbe iniziarsi a vedere la distorsione del dispositivo:
+
+Psorg = +14 dbM
+Vrms1 = 0.064917 V
+Vrms2 = 0.360624 V
+Ppowermeter = 4.4 dbM
+I = 0.327 A
+
+In questa sezione vediamo che il canale 3 (onda blu) inizia a distorcersi e a non essere più perfettamente sinusoidale, in quanto abbiamo superato la soglia di piccolo segnale e di linearità e iniziamo a vedere gli effetti delle distorsione e della non linearità sul DUT.
+
+
+Aumentiamo di 2dB, perchè iniziamo a distorcere molto e vediamo gli effetti che otteniamo:
+
+Psorg = +16 dbM
+Vrms1 = 0.091701 V
+Vrms2 = 0.412041 V
+Ppowermeter = 5.6 dBm
+I = 0.289
+
+Vediamo che aumentando la potenza della sorgente abbiamo un canale 3 molto distorto e il canale 2 che inizia a distorcersi.
+
+Aumentiamo la potenza in ingresso di 2 dbM, ma l'uscita aumenta di 1 dBm. Questo perchè si sono perse le caratteristiche di linearità e si stanno inizando a comprimere le misure.
+
+Per riportare le misure utilizzare i GRAFICI!
+Qui le misure:
+
+Psorg = +18dbM
+Vrms1 = 0.0985833 V
+Vrms2 = 0.472576 V
+Ppowermeter = 6.7 dbM
+I = 0.038 A
+
+Per tutti calcolare i valori di potenza in ingresso e in uscita con gli RMS e calcolare l'efficienza.
+
+
+
+GRAFICO 1
+Questa è la classica caratterizzazione che si fa su un oggetto che amplifica, si chiama Power Sweep (spazzolata).
+Si fanno grafici dove, in funzione dellla potenza di ingresso in dbM si grafica la potenza di uscita in dbM e quello che viene fuori è un grafico lineare finhè si è a piccolo segnale con una pendenza data dal guadagno. Quando si diventa non lineari non di va più su con una retta ma diventa una costante. Quando si diventa piatti si raggiunge la saturazione, in quanto il dispositivo non riesce più a risponere all'aumento della potenza in ingresso con un aumento della potenza in uscita!
+
+
+GRAFICO2 
+un altro grafico possibile è quello del guadagno in db! Avrà un andamento costante a piccolo segnale e quando si comincia a diventare non lineare il guadagno va a calare. Si può fare questop tipo di grafico.
+La regione in cui cala il giadagno si chiama REGIONE DI COMPRESSIONE DEL GUADAGNO e spesso si indicabno i db di compressione. Si guarda il guadagno a piccolo segnale ed il punto in cui il guadagno cala di TOTdB, si dice che è un guadagbo di compressione. Con le nostre misure siamo arrivati intorno a 2dB di compressione!!!
+
+GRAFICO3 e oltre
+Si potrebbe fare un grafico dell'efficienza, che partirà bassa a 0 e salirà su fino ad un certo livello
+
+Avendo acquisito quattro forme d'ondsa (quattro canali) su diversi livelli, si potrebbero fare QUATTRO GRAFICI, dove per ogni grafico metto il canale 1 a tutti i livelli di potenza.
+Plotto un grafico con tutti i valori di potenza per singolo canale. Prendo i dati dai file di testo ottenuti, per i quattro canali dove si vede la differenza tra lo stesso canale con i diversi livelli di potenza in ingresso. E' importanete anche mettere un grafico con i quattro canali per far vedere come è fatta l'interfaccia.
+
+Su MatLab c'è una funzione ImportData, che mi consente di prendere i dati e plottarli tutti in una volta in un grafico guardando dalla tabella. E' importante con MatLab nei grafici mettere le Label, le unità di misura e le grandezze che stiamo misurando.
+
+
+NELLA TABELLA, OLTRE I VARI DATI DI POTENZA, PER INFORMAZIONE SI POTREBBERO AGGIUNGERE LE SCALE VERTICALI CHE SONO STATE UTILIZZATE NEI VARI FILE, PRENDENDOLE DIRETTAMENTE DAI FILE DI TESTO CHE SONO STATE CREATE. E' importante la scala verticale!!!!!! E' un'informazione utile per comprendere al meglio le forme d'omda nei grafici.
+
+NON ESAGERARE SULLE PAGINE MA VANNO BENE ANCHE PIU' di 30!
+
+
+
+I graifici di efficienza, guadagno e potenza possono essere messa in un unico grafico, ma bisogna fare molta attenzione alle scale!
+
+
+SI POSSONO FARE I GRAFICI CON MATLAB CHE VENGONO MOLTO BENE, NON SERVONO LE TABELLE. MAGARI SI PUO' METTERE UNA TABELLA COMPLESSIVA, EFFICACE IL GRAFICO, MASSIMO UNA TABELLA
+
+Queste operazioni servono per far vedere le condizioni reliatsiche con il quale si possono fare le misure con questo oscilloscopio
+
+
+
+
+
+
+
+
+NOTA:
+
+Potrebbe essere utile capire quanto vale la scala quando seleziono il canale, si può aggiungere un evento che quando voglio aggiornare la scala del canale, con un property node, lui mi va ad aggiornare l'indicatore per scriverci sopra il valore che prima avevo settato!
+
+Chiedere i dati dei VI solo quando premo per settare!!!!!!!!
+Un alternativa potrebbe essere nel VI principale, quando apro il VI della scala verticale blocco un attimo per acquisire le quattro scale dei canali attivi, e passarle al VI della scala come parametro. In wuesto modo posso sapere i vari elementi della scala verticale.
